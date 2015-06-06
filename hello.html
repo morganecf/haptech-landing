@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+<head>
+	<title> Welcome to Haptech </title>
+	<style type="text/css">
+		.content {
+			z-index:3;
+			position:relative;
+			display:block;
+		}
+		#yes {
+			margin-left: 10px;
+			font-size: 25px;
+			background-color: purple;
+		}
+		#email, #at, #domain {
+			height: 55px;
+			margin-top: 2px;
+			opacity: 1;
+		}
+		#at-text {
+			font-size: 30px;
+			margin:-10px;
+		}
+		#at {
+			border-top: solid 1px gray;
+			border-bottom: solid 1px gray;
+		}
+		.name {
+			font-size: 35px;
+		}
+		.mypanel {
+			/*background: #6495ED;*/
+			background: purple;
+			border-radius:2px;
+			padding:40px;
+			/*margin-top:100px;*/
+			opacity: 0.4;
+			height: 300px;
+			opacity: 0.2;
+		}
+
+		.outline-panel {
+			border: solid 1px white;
+			border-radius: 2px;
+			opacity: .5;
+			margin-top:100px;
+		}
+		.content-panel {
+			z-index:10;
+			margin-top:-300px;
+			margin-left: 50px;
+		}
+
+		input, textarea, keygen, select, button {
+			font: 50px;
+		}
+
+		 u {
+		    text-decoration: none;
+		    border-bottom: 7px solid #FFD700;
+		    display: inline-block;
+		    margin-bottom:10px;
+		 }​
+
+		 #beta, #signup {}
+
+		 #beta {
+		 	margin-top:100px;
+		 	color: white;
+		 }
+
+		 #tech {
+		 	color: #FFD700;
+		 	text-decoration: none;
+		 	font-size: 28px;
+		 }
+		 #haptech {
+		 	font-size: 28px;
+		 }
+
+		@keyframes move-twink-back { 
+			from {background-position:0 0;} 
+			to {background-position:-10000px 5000px;} 
+		}
+		@-webkit-keyframes move-twink-back { 
+			from {background-position:0 0;} 
+			to {background-position:-10000px 5000px;} 
+		} 
+		@-moz-keyframes move-twink-back { 
+			from {background-position:0 0;} 
+			to {background-position:-10000px 5000px;} 
+		} 
+		@-ms-keyframes move-twink-back { 
+			from {background-position:0 0;} 
+			to {background-position:-10000px 5000px;} 
+		} 
+		.stars, .twinkling { 
+			position:absolute; 
+			top:0; 
+			left:0; 
+			right:0; 
+			bottom:0; 
+			width:100%; 
+			height:100%; 
+			display:block; 
+		} 
+		.stars { 
+			background:#000 url(images/stars.png) repeat top center; 
+			z-index:0; 
+		} 
+		.twinkling{ 
+			background:transparent url(images/twinkling.png) repeat top center; 
+			z-index:1; 
+			-moz-animation:move-twink-back 200s linear infinite; 
+			-ms-animation:move-twink-back 200s linear infinite; 
+			-o-animation:move-twink-back 200s linear infinite; 
+			-webkit-animation:move-twink-back 200s linear infinite; 
+			animation:move-twink-back 200s linear infinite; 
+		} 
+		
+	</style>
+
+	<link href="../foundation/css/foundation.min.css" rel="stylesheet" />
+	<script src="../jquery-1.11.3.min.js"></script>
+	<script src="../socket.io.js"></script>
+
+	<script> 
+		var socket = io();
+
+		socket.on('received', function (rec) {
+			console.log("received");
+			$("#email").val('eagerbetatester@gmail.com');
+		});
+
+		function save_email () {
+			// Save the email 
+			socket.emit('email', $("#email").val());
+			console.log('saved');
+
+			// Refresh 
+			history.go(0);
+		};
+	</script>
+
+</head>
+
+<body>
+
+	<div class="stars"></div> 
+	<div class="twinkling"></div>
+
+	<div class="content">
+
+		<nav class="top-bar" data-topbar role="navigation">
+			<ul class="title-area">
+				<li class="name">
+					<h3 id="haptech"><a href="#">Hap<span id="tech">Tech</span></a></h3>
+				</li>
+			</ul>
+
+			<section class="top-bar-section">
+				<ul class="right">
+					<li><a href="demo.html">Demo</a></li>
+					<li class="active"><a href="#">Sign up</a></li>
+				</ul>
+			</section>
+		</nav>
+
+
+		<div class="row" id="row1">
+		    <div class="large-12 columns">
+		    	
+		    	<div class="outline-panel">
+		    		<div class="mypanel">
+		    		</div>
+		    	</div>
+
+		    	<div class="content-panel">
+			    	<h2 id="beta"> Want to be a <u>beta tester?</u> </h2>
+			        <form action="hello.html" id="signup" onsubmit="save_email()">
+				    	<!-- <input class="large-4 columns" id="email"/>
+				    	<button class="large-1 columns secondary" id="at"><div id="at-text">@</div></button>
+				    	<input class="large-4 columns" id="domain"/> -->
+				    	<input class="large-10 columns" id="email" value="eagerbetatester@gmail.com" />
+				    	<button id="yes" class="small success radius">Yes!</button>
+				    </form>
+				</div>
+
+		    </div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
