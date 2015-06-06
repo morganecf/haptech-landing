@@ -1,0 +1,9 @@
+{
+  "name": "angelhacks-signup",
+  "version": "0.0.1",
+  "description": "angelhacks sign up form",
+  "dependencies": {
+    "express": "~4.10.2",
+    "socket.io": "~1.3.5"
+  }
+}
